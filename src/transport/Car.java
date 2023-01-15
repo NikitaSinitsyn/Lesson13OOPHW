@@ -175,8 +175,8 @@ public class Car {
         @Override
         public String toString() {
             return "Key{" +
-                    "remoteStart=" + remoteStart +
-                    ", keylessAccess=" + keylessAccess +
+                    "remoteStart = " + remoteStart +
+                    ", keylessAccess = " + keylessAccess +
                     '}';
         }
     }
