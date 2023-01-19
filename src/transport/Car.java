@@ -5,13 +5,9 @@ import java.util.regex.Pattern;
 
 import static transport.Validator.*;
 
-public class Car {
-    private final String brand;
-    private final String model;
+public class Car extends Transport {
+
     private float engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
@@ -22,22 +18,19 @@ public class Car {
 
     public Car(String brand,
                String model,
-               float engineVolume,
-               String color,
                int year,
                String country,
+               String colour,
+               int maxSpeed,
+               float engineVolume,
                String transmission,
                String bodyType,
                String registrationNumber,
                int numberOfSeats,
                boolean isSummerRubber,
                Key key) {
-        this.brand = validateParameter(brand);
-        this.model = validateParameter(model);
+        super(brand, model, year, country, colour, maxSpeed);
         this.engineVolume = validateEngineVolume(engineVolume);
-        this.color = validateColor(color);
-        this.year = validateYear(year);
-        this.country = validateParameter(country);
         this.transmission = validateTransmission(transmission);
         this.bodyType = validateBodyType(bodyType);
         this.registrationNumber = validateRegistrationNumber(registrationNumber);
@@ -46,29 +39,10 @@ public class Car {
         this.key = key;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
     public float getEngineVolume() {
         return engineVolume;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
-    }
 
     public String getTransmission() {
         return transmission;
@@ -94,9 +68,6 @@ public class Car {
         this.engineVolume = validateEngineVolume(engineVolume);
     }
 
-    public void setColor(String color) {
-        this.color = validateColor(color);
-    }
 
     public void setTransmission(String transmission) {
         this.transmission = validateTransmission(transmission);
@@ -127,21 +98,11 @@ public class Car {
     }
 
     //Validators
-    public static String validateParameter(String parameter) {
-        return validateString(parameter, "default");
-    }
-
-    public static String validateColor(String parameter) {
-        return validateString(parameter, "белый");
-    }
 
     public static float validateEngineVolume(float parameter) {
         return parameter <= 0 ? 1.5f : parameter;
     }
 
-    public static int validateYear(int parameter) {
-        return parameter <= 0 ? 2000 : parameter;
-    }
 
     public static String validateTransmission(String parameter) {
         return validateString(parameter, "автомат");
@@ -181,27 +142,29 @@ public class Car {
         }
     }
 
-
     @Override
     public String toString() {
-        return brand + " " + model + ", " + year + " года выпуска, сборка - " + country +
-                ", цвет кузова - " + color + ", объем двигателя - " + engineVolume + "л." +
-                ", трансмиссия " + transmission + ", тип кузова " + bodyType + ", регистрационный номер " + registrationNumber + ", колличество мест "
-                + numberOfSeats + ", летняя резина " + isSummerRubber + ", ключь " + key +
-                '}';
+        return super.toString() + ", Car " +
+                "engineVolume = " + engineVolume +
+                ", transmission = '" + transmission +
+                ", bodyType = " + bodyType +
+                ", registrationNumber = " + registrationNumber +
+                ", numberOfSeats = " + numberOfSeats +
+                ", isSummerRubber = " + isSummerRubber +
+                ", key= " + key;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Car car = (Car) o;
-        return Float.compare(car.engineVolume, engineVolume) == 0 && year == car.year && Objects.equals(brand, car.brand) && Objects.equals(model, car.model) && Objects.equals(color, car.color) && Objects.equals(country, car.country);
+        return Float.compare(car.engineVolume, engineVolume) == 0 && numberOfSeats == car.numberOfSeats && isSummerRubber == car.isSummerRubber && Objects.equals(transmission, car.transmission) && Objects.equals(bodyType, car.bodyType) && Objects.equals(registrationNumber, car.registrationNumber) && Objects.equals(key, car.key);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, engineVolume, color, year, country);
+        return Objects.hash(super.hashCode(), engineVolume, transmission, bodyType, registrationNumber, numberOfSeats, isSummerRubber, key);
     }
-
 }
