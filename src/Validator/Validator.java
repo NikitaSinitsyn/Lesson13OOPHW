@@ -1,4 +1,4 @@
-package transport;
+package Validator;
 
 public class Validator {
     public static String validateString (String parameter, String defaultParameter){
