@@ -1,19 +1,22 @@
 package transport;
+import Driver.DriverCategoryB;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import static transport.Validator.*;
+import static Validator.Validator.*;
 
-public class Car extends Transport {
+public class Car extends Transport<DriverCategoryB> {
 
-    private float engineVolume;
     private String transmission;
     private final String bodyType;
     private String registrationNumber;
     private final int numberOfSeats;
     private boolean isSummerRubber;
     private Key key;
+    private Integer pitStopTime;
+    private Integer bestCircleTime;
+    private Integer bestMaxSpeed;
 
 
     public Car(String brand,
@@ -21,26 +24,27 @@ public class Car extends Transport {
                int year,
                String country,
                String colour,
-               int maxSpeed,
                float engineVolume,
+               DriverCategoryB driver,
                String transmission,
                String bodyType,
                String registrationNumber,
                int numberOfSeats,
                boolean isSummerRubber,
-               Key key) {
-        super(brand, model, year, country, colour, maxSpeed);
-        this.engineVolume = validateEngineVolume(engineVolume);
+               Key key,
+               Integer pitStopTime,
+               Integer bestCircleTime,
+               Integer bestMaxSpeed) {
+        super(brand, model, year, country, colour, engineVolume, driver);
         this.transmission = validateTransmission(transmission);
         this.bodyType = validateBodyType(bodyType);
         this.registrationNumber = validateRegistrationNumber(registrationNumber);
         this.numberOfSeats = validateNumberOfSeats(numberOfSeats);
         this.isSummerRubber = isSummerRubber;
         this.key = key;
-    }
-
-    public float getEngineVolume() {
-        return engineVolume;
+        this.pitStopTime = pitStopTime;
+        this.bestCircleTime = bestCircleTime;
+        this.bestMaxSpeed = bestMaxSpeed;
     }
 
 
@@ -64,10 +68,6 @@ public class Car extends Transport {
         return isSummerRubber;
     }
 
-    public void setEngineVolume(float engineVolume) {
-        this.engineVolume = validateEngineVolume(engineVolume);
-    }
-
 
     public void setTransmission(String transmission) {
         this.transmission = validateTransmission(transmission);
@@ -83,6 +83,30 @@ public class Car extends Transport {
 
     public void setKey(Key key) {
         this.key = key;
+    }
+
+    public Integer getPitStopTime() {
+        return pitStopTime;
+    }
+
+    public void setPitStopTime(Integer pitStopTime) {
+        this.pitStopTime = pitStopTime;
+    }
+
+    public Integer getBestCircleTime() {
+        return bestCircleTime;
+    }
+
+    public void setBestCircleTime(Integer bestCircleTime) {
+        this.bestCircleTime = bestCircleTime;
+    }
+
+    public Integer getBestMaxSpeed() {
+        return bestMaxSpeed;
+    }
+
+    public void setBestMaxSpeed(Integer bestMaxSpeed) {
+        this.bestMaxSpeed = bestMaxSpeed;
     }
 
     public void changeTyres(int month) {
@@ -124,6 +148,58 @@ public class Car extends Transport {
         return parameter;
     }
 
+    @Override
+    void startMoving() {
+        System.out.println("Car is moving!");
+    }
+
+    @Override
+    void stopMoving() {
+        System.out.println("Car is stopped!");
+    }
+    @Override
+    public void getPitStop() {
+        System.out.println("Pit Stop time is - " + getPitStopTime());
+    }
+
+    @Override
+    public void getTheBestCircleTime() {
+        System.out.println("The best circle time is - " + getBestCircleTime());
+    }
+
+    @Override
+    public void getMaxSpeed() {
+        System.out.println("Max speed - " + getBestMaxSpeed());
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + ", Car " +
+                " transmission = '" + transmission +
+                ", bodyType = " + bodyType +
+                ", registrationNumber = " + registrationNumber +
+                ", numberOfSeats = " + numberOfSeats +
+                ", isSummerRubber = " + isSummerRubber +
+                ", key= " + key +
+                ", pitStopTime=" + pitStopTime +
+                ", bestCircleTime=" + bestCircleTime +
+                ", bestMaxSpeed=" + bestMaxSpeed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Car car = (Car) o;
+        return numberOfSeats == car.numberOfSeats && isSummerRubber == car.isSummerRubber && Objects.equals(transmission, car.transmission) && Objects.equals(bodyType, car.bodyType) && Objects.equals(registrationNumber, car.registrationNumber) && Objects.equals(key, car.key);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), transmission, bodyType, registrationNumber, numberOfSeats, isSummerRubber, key);
+    }
+
     public static class Key {
         private final boolean remoteStart;
         private final boolean keylessAccess;
@@ -140,31 +216,5 @@ public class Car extends Transport {
                     ", keylessAccess = " + keylessAccess +
                     '}';
         }
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Car " +
-                "engineVolume = " + engineVolume +
-                ", transmission = '" + transmission +
-                ", bodyType = " + bodyType +
-                ", registrationNumber = " + registrationNumber +
-                ", numberOfSeats = " + numberOfSeats +
-                ", isSummerRubber = " + isSummerRubber +
-                ", key= " + key;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Car car = (Car) o;
-        return Float.compare(car.engineVolume, engineVolume) == 0 && numberOfSeats == car.numberOfSeats && isSummerRubber == car.isSummerRubber && Objects.equals(transmission, car.transmission) && Objects.equals(bodyType, car.bodyType) && Objects.equals(registrationNumber, car.registrationNumber) && Objects.equals(key, car.key);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), engineVolume, transmission, bodyType, registrationNumber, numberOfSeats, isSummerRubber, key);
     }
 }

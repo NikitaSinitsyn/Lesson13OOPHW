@@ -1,24 +1,24 @@
 package transport;
 
-import Driver.DriverCategoryC;
+import Driver.DriverCategoryD;
 
 import java.util.Objects;
 
-public class Bus extends Transport<DriverCategoryC>{
+public class Truck extends Transport<DriverCategoryD>{
     private Integer pitStopTime;
     private Integer bestCircleTime;
     private Integer bestMaxSpeed;
 
-    public Bus(String brand,
-               String model,
-               int year,
-               String country,
-               String colour,
-               float engineVolume,
-               DriverCategoryC driver,
-               Integer pitStopTime,
-               Integer bestCircleTime,
-               Integer bestMaxSpeed) {
+    public Truck(String brand,
+                 String model,
+                 int year,
+                 String country,
+                 String colour,
+                 float engineVolume,
+                 DriverCategoryD driver,
+                 Integer pitStopTime,
+                 Integer bestCircleTime,
+                 Integer bestMaxSpeed) {
         super(brand, model, year, country, colour, engineVolume, driver);
         this.pitStopTime = pitStopTime;
         this.bestCircleTime = bestCircleTime;
@@ -51,14 +51,13 @@ public class Bus extends Transport<DriverCategoryC>{
 
     @Override
     void startMoving() {
-        System.out.println("Bus is moving!");
+        System.out.println("Truck is moving!");
     }
 
     @Override
     void stopMoving() {
-        System.out.println("Bus is stopped!");
+        System.out.println("Truck is stopped!");
     }
-
     @Override
     public void getPitStop() {
         System.out.println("Pit Stop time is - " + getPitStopTime());
@@ -73,6 +72,7 @@ public class Bus extends Transport<DriverCategoryC>{
     public void getMaxSpeed() {
         System.out.println("Max speed - " + getBestMaxSpeed());
     }
+
     @Override
     public String toString() {
         return super.toString() + ", pitStopTime=" + pitStopTime +
@@ -85,8 +85,8 @@ public class Bus extends Transport<DriverCategoryC>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        Bus bus = (Bus) o;
-        return Objects.equals(pitStopTime, bus.pitStopTime) && Objects.equals(bestCircleTime, bus.bestCircleTime) && Objects.equals(bestMaxSpeed, bus.bestMaxSpeed);
+        Truck truck = (Truck) o;
+        return Objects.equals(pitStopTime, truck.pitStopTime) && Objects.equals(bestCircleTime, truck.bestCircleTime) && Objects.equals(bestMaxSpeed, truck.bestMaxSpeed);
     }
 
     @Override
@@ -94,4 +94,3 @@ public class Bus extends Transport<DriverCategoryC>{
         return Objects.hash(super.hashCode(), pitStopTime, bestCircleTime, bestMaxSpeed);
     }
 }
-
