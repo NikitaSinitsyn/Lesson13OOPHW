@@ -9,7 +9,6 @@ import static Validator.Validator.*;
 public class Car extends Transport<DriverCategoryB> {
 
     private String transmission;
-    private final String bodyType;
     private String registrationNumber;
     private final int numberOfSeats;
     private boolean isSummerRubber;
@@ -17,7 +16,8 @@ public class Car extends Transport<DriverCategoryB> {
     private Integer pitStopTime;
     private Integer bestCircleTime;
     private Integer bestMaxSpeed;
-
+    BodyType bodyType;
+    CarType carType;
 
     public Car(String brand,
                String model,
@@ -27,32 +27,32 @@ public class Car extends Transport<DriverCategoryB> {
                float engineVolume,
                DriverCategoryB driver,
                String transmission,
-               String bodyType,
+               BodyType bodyType,
                String registrationNumber,
                int numberOfSeats,
                boolean isSummerRubber,
-               Key key,
-               Integer pitStopTime,
+               Key key, Integer pitStopTime,
                Integer bestCircleTime,
-               Integer bestMaxSpeed) {
+               Integer bestMaxSpeed,
+               CarType carType) {
         super(brand, model, year, country, colour, engineVolume, driver);
-        this.transmission = validateTransmission(transmission);
-        this.bodyType = validateBodyType(bodyType);
-        this.registrationNumber = validateRegistrationNumber(registrationNumber);
-        this.numberOfSeats = validateNumberOfSeats(numberOfSeats);
+        this.transmission = transmission;
+        this.bodyType = bodyType;
+        this.registrationNumber = registrationNumber;
+        this.numberOfSeats = numberOfSeats;
         this.isSummerRubber = isSummerRubber;
         this.key = key;
         this.pitStopTime = pitStopTime;
         this.bestCircleTime = bestCircleTime;
         this.bestMaxSpeed = bestMaxSpeed;
+        this.carType = carType;
     }
-
 
     public String getTransmission() {
         return transmission;
     }
 
-    public String getBodyType() {
+    public BodyType getBodyType() {
         return bodyType;
     }
 
@@ -107,6 +107,22 @@ public class Car extends Transport<DriverCategoryB> {
 
     public void setBestMaxSpeed(Integer bestMaxSpeed) {
         this.bestMaxSpeed = bestMaxSpeed;
+    }
+
+    public Key getKey() {
+        return key;
+    }
+
+    public void setBodyType(BodyType bodyType) {
+        this.bodyType = bodyType;
+    }
+
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 
     public void changeTyres(int month) {
@@ -173,6 +189,15 @@ public class Car extends Transport<DriverCategoryB> {
     }
 
     @Override
+    public void printType() {
+        if(carType == null){
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(carType);
+        }
+    }
+
+    @Override
     public String toString() {
         return super.toString() + ", Car " +
                 " transmission = '" + transmission +
@@ -180,10 +205,10 @@ public class Car extends Transport<DriverCategoryB> {
                 ", registrationNumber = " + registrationNumber +
                 ", numberOfSeats = " + numberOfSeats +
                 ", isSummerRubber = " + isSummerRubber +
-                ", key= " + key +
-                ", pitStopTime=" + pitStopTime +
-                ", bestCircleTime=" + bestCircleTime +
-                ", bestMaxSpeed=" + bestMaxSpeed;
+                ", key = " + key +
+                ", pitStopTime = " + pitStopTime +
+                ", bestCircleTime = " + bestCircleTime +
+                ", bestMaxSpeed = " + bestMaxSpeed;
     }
 
     @Override
