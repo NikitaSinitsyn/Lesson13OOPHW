@@ -1,11 +1,11 @@
 package transport;
 
 public enum CapacityType {
-    ОсобоМалая(null, 10),
-    Малая(null, 25),
-    Средняя(40, 50),
-    Болбшая(60, 80),
-    ОсобоБольшая(100, 120);
+    VerySmall(null, 10),
+    Small(null, 25),
+    Middle(40, 50),
+    Big(60, 80),
+    VeryBig(100, 120);
     private Integer bottomValue;
     private Integer topValue;
 
