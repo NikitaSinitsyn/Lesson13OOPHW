@@ -1,10 +1,10 @@
 package transport;
 
 public enum CarType {
-    FourStrokeSupercharged,
-    FourStrokeWithoutBoost,
-    TwoStrokeSupercharged,
-    TwoStrokeUnAspirated;
+    FOURSTROKESUPERCHARGED,
+    FOURSSTROKEWITHOUTBOOST,
+    TWOSTROKESUPERCHARGED,
+    TwoSTROKEUNASPIRATED;
 
     @Override
     public String toString() {

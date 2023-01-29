@@ -1,8 +1,8 @@
 package transport;
 
 public enum TruckType {
-    OpenBody,
-    ClosedBody;
+    OPENBODY,
+    CLOSEBODY;
 
     @Override
     public String toString() {

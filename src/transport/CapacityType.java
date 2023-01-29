@@ -1,11 +1,11 @@
 package transport;
 
 public enum CapacityType {
-    VerySmall(null, 10),
-    Small(null, 25),
-    Middle(40, 50),
-    Big(60, 80),
-    VeryBig(100, 120);
+    VERYSMALL(null, 10),
+    SMALL(null, 25),
+    MIDDLE(40, 50),
+    BIG(60, 80),
+    VERYBIG(100, 120);
     private Integer bottomValue;
     private Integer topValue;
 

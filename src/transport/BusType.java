@@ -1,8 +1,8 @@
 package transport;
 
 public enum BusType {
-    Passenger,
-    Special;
+    PASSENGER,
+    SPECIAL;
 
     @Override
     public String toString() {

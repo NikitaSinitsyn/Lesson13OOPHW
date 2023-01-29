@@ -1,15 +1,15 @@
 package transport;
 
 public enum BodyType {
-    Sedan,
-    Hatchback,
-    Coupe,
-    Wagon,
+    SEDAN,
+    HATCHBACK,
+    COUPE,
+    WAGON,
     SUV,
-    Crossover,
-    Pickup,
-    Van,
-    Minivan;
+    CROSSOVER,
+    PICKUP,
+    VAN,
+    MINIVAN;
 
     @Override
     public String toString() {
