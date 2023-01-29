@@ -8,6 +8,8 @@ public class Truck extends Transport<DriverCategoryD>{
     private Integer pitStopTime;
     private Integer bestCircleTime;
     private Integer bestMaxSpeed;
+    LoadCapacity loadCapacity;
+    TruckType truckType;
 
     public Truck(String brand,
                  String model,
@@ -18,11 +20,15 @@ public class Truck extends Transport<DriverCategoryD>{
                  DriverCategoryD driver,
                  Integer pitStopTime,
                  Integer bestCircleTime,
-                 Integer bestMaxSpeed) {
+                 Integer bestMaxSpeed,
+                 LoadCapacity loadCapacity,
+                 TruckType truckType) {
         super(brand, model, year, country, colour, engineVolume, driver);
         this.pitStopTime = pitStopTime;
         this.bestCircleTime = bestCircleTime;
         this.bestMaxSpeed = bestMaxSpeed;
+        this.loadCapacity = loadCapacity;
+        this.truckType = truckType;
     }
 
     public Integer getPitStopTime() {
@@ -49,6 +55,22 @@ public class Truck extends Transport<DriverCategoryD>{
         this.bestMaxSpeed = bestMaxSpeed;
     }
 
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(LoadCapacity loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
+
+    public TruckType getTruckType() {
+        return truckType;
+    }
+
+    public void setTruckType(TruckType truckType) {
+        this.truckType = truckType;
+    }
+
     @Override
     void startMoving() {
         System.out.println("Truck is moving!");
@@ -72,12 +94,22 @@ public class Truck extends Transport<DriverCategoryD>{
     public void getMaxSpeed() {
         System.out.println("Max speed - " + getBestMaxSpeed());
     }
+    @Override
+    public void printType() {
+        if(truckType == null){
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(truckType);
+        }
+    }
 
     @Override
     public String toString() {
-        return super.toString() + ", pitStopTime=" + pitStopTime +
-                ", bestCircleTime=" + bestCircleTime +
-                ", bestMaxSpeed=" + bestMaxSpeed;
+        return super.toString() + ", pitStopTime = " + pitStopTime +
+                ", bestCircleTime = " + bestCircleTime +
+                ", bestMaxSpeed = " + bestMaxSpeed +
+                loadCapacity +
+                ", " + getTruckType();
     }
 
     @Override

@@ -8,6 +8,8 @@ public class Bus extends Transport<DriverCategoryC>{
     private Integer pitStopTime;
     private Integer bestCircleTime;
     private Integer bestMaxSpeed;
+    CapacityType capacityType;
+    BusType busType;
 
     public Bus(String brand,
                String model,
@@ -18,11 +20,15 @@ public class Bus extends Transport<DriverCategoryC>{
                DriverCategoryC driver,
                Integer pitStopTime,
                Integer bestCircleTime,
-               Integer bestMaxSpeed) {
+               Integer bestMaxSpeed,
+               CapacityType capacityType,
+               BusType busType) {
         super(brand, model, year, country, colour, engineVolume, driver);
         this.pitStopTime = pitStopTime;
         this.bestCircleTime = bestCircleTime;
         this.bestMaxSpeed = bestMaxSpeed;
+        this.capacityType = capacityType;
+        this.busType = busType;
     }
 
     public Integer getPitStopTime() {
@@ -49,6 +55,22 @@ public class Bus extends Transport<DriverCategoryC>{
         this.bestMaxSpeed = bestMaxSpeed;
     }
 
+    public CapacityType getCapacityType() {
+        return capacityType;
+    }
+
+    public void setCapacityType(CapacityType capacityType) {
+        this.capacityType = capacityType;
+    }
+
+    public BusType getBusType() {
+        return busType;
+    }
+
+    public void setBusType(BusType busType) {
+        this.busType = busType;
+    }
+
     @Override
     void startMoving() {
         System.out.println("Bus is moving!");
@@ -73,11 +95,23 @@ public class Bus extends Transport<DriverCategoryC>{
     public void getMaxSpeed() {
         System.out.println("Max speed - " + getBestMaxSpeed());
     }
+
+    @Override
+    public void printType() {
+        if(busType == null){
+            System.out.println("Данных по транспортному средству недостаточно");
+        } else {
+            System.out.println(busType);
+        }
+    }
+
     @Override
     public String toString() {
-        return super.toString() + ", pitStopTime=" + pitStopTime +
-                ", bestCircleTime=" + bestCircleTime +
-                ", bestMaxSpeed=" + bestMaxSpeed;
+        return super.toString() + ", pitStopTime = " + pitStopTime +
+                ", bestCircleTime = " + bestCircleTime +
+                ", bestMaxSpeed = " + bestMaxSpeed +
+                ", " + capacityType +
+                ", " + getBusType();
     }
 
     @Override

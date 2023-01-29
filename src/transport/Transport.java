@@ -93,6 +93,7 @@ public abstract class Transport<T extends Driver> implements Competing {
     }
      abstract void startMoving();
     abstract void stopMoving();
+    public abstract void printType();
 
 
     @Override
