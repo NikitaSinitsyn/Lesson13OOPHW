@@ -198,6 +198,11 @@ public class Car extends Transport<DriverCategoryB> {
     }
 
     @Override
+    public void passDiagnostic() {
+        System.out.println("Легковой автомобиль прошел диагностику!");
+    }
+
+    @Override
     public String toString() {
         return super.toString() + ", Car " +
                 " transmission = '" + transmission +

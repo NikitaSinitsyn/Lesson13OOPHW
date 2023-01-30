@@ -104,6 +104,11 @@ public class Truck extends Transport<DriverCategoryD>{
     }
 
     @Override
+    public void passDiagnostic() {
+        System.out.println("Грузовой атомобиль прошел диагностику");
+    }
+
+    @Override
     public String toString() {
         return super.toString() + ", pitStopTime = " + pitStopTime +
                 ", bestCircleTime = " + bestCircleTime +

@@ -106,6 +106,11 @@ public class Bus extends Transport<DriverCategoryC>{
     }
 
     @Override
+    public void passDiagnostic() throws TransportException {
+        throw new TransportException("Автобусы не должны проходить диагностику!");
+    }
+
+    @Override
     public String toString() {
         return super.toString() + ", pitStopTime = " + pitStopTime +
                 ", bestCircleTime = " + bestCircleTime +

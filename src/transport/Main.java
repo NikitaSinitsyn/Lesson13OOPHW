@@ -52,10 +52,21 @@ public class Main {
         printInformation(car1);
         printInformation(firstTruck);
         printInformation(firstBus);
+        checkTransportForDiagnostic(car1, firstBus, firstTruck);
 
 
     }
     private static void printInformation(Transport<?> transport){
         System.out.println("Водитель " + transport.getDriver().getFullName() + " управляет автомобилем " + transport.getBrand() + " " + transport.getModel() + " и будет участвовать в заезде!");
+    }
+    private static void checkTransportForDiagnostic(Transport... transports){
+        for (Transport transport: transports) {
+            try {
+                transport.passDiagnostic();
+            } catch (TransportException e) {
+                System.err.println(e.getMessage());
+            }
+
+        }
     }
 }
