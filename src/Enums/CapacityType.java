@@ -1,4 +1,4 @@
-package transport;
+package Enums;
 
 public enum CapacityType {
     VERYSMALL(null, 10),

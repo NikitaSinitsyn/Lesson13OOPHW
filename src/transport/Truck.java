@@ -1,6 +1,8 @@
 package transport;
 
 import Driver.DriverCategoryD;
+import Enums.LoadCapacity;
+import Enums.TruckType;
 
 import java.util.Objects;
 
@@ -70,6 +72,7 @@ public class Truck extends Transport<DriverCategoryD>{
     public void setTruckType(TruckType truckType) {
         this.truckType = truckType;
     }
+
 
     @Override
     void startMoving() {

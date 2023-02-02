@@ -1,4 +1,4 @@
-package transport;
+package MyExeptions;
 
 public class TransportException extends Exception{
     public TransportException() {
