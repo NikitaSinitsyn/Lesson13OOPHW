@@ -1,6 +1,9 @@
 package transport;
 
 import Driver.DriverCategoryC;
+import Enums.BusType;
+import Enums.CapacityType;
+import MyExeptions.TransportException;
 
 import java.util.Objects;
 
@@ -104,6 +107,12 @@ public class Bus extends Transport<DriverCategoryC>{
             System.out.println(busType);
         }
     }
+
+    @Override
+    public void passDiagnostic() throws TransportException {
+        throw new TransportException("Автобусы не должны проходить диагностику!");
+    }
+
 
     @Override
     public String toString() {

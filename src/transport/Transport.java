@@ -1,10 +1,13 @@
 package transport;
 
-import Driver.*;
+import Driver.Driver;
+import Mechanic.Mechanic;
+import MyExeptions.TransportException;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
-import static Validator.Validator.*;
+import static Validator.Validator.validateString;
 public abstract class Transport<T extends Driver> implements Competing {
     private final String brand;
     private final String model;
@@ -13,6 +16,7 @@ public abstract class Transport<T extends Driver> implements Competing {
     private String colour;
     private float engineVolume;
     private T driver;
+     ArrayList<Mechanic> mechanicsList;
 
     public Transport(String brand, String model, int year, String country, String colour, float engineVolume, T driver) {
         this.brand = validateParameter(brand);
@@ -22,6 +26,7 @@ public abstract class Transport<T extends Driver> implements Competing {
         this.colour = validateColor(colour);
         this.engineVolume = validateEngineVolume(engineVolume);
         this.driver = driver;
+        this.mechanicsList = new ArrayList<>();
     }
 
     // Getters & Setters
@@ -65,6 +70,7 @@ public abstract class Transport<T extends Driver> implements Competing {
         this.driver = driver;
     }
 
+
     // validate area
     public static String validateParameter(String parameter) {
         return validateString(parameter, "default");
@@ -94,6 +100,26 @@ public abstract class Transport<T extends Driver> implements Competing {
      abstract void startMoving();
     abstract void stopMoving();
     public abstract void printType();
+    public abstract void passDiagnostic() throws TransportException;
+
+    public void addMechanic(String name, String lastName, String company){
+        mechanicsList.add(new Mechanic(name, lastName, company));
+    }
+    public void addMechanic(Mechanic mechanic){
+        mechanicsList.add(mechanic);
+    }
+    public void removeMechanic(Mechanic mechanic){
+        mechanicsList.remove(mechanic);
+    }
+    public void removeMechanic(int index){
+        mechanicsList.remove(index);
+    }
+    public void printAllMechanics(){
+        System.out.println("Список механников: " + getBrand() + " " + getModel() + " " + mechanicsList);
+    }
+    public void printTheDriverInformation(){
+        System.out.println("Водитель транспортного средства - " + getDriver().getFullName());
+    }
 
 
     @Override

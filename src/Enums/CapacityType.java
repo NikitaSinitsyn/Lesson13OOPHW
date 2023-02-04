@@ -1,4 +1,4 @@
-package transport;
+package Enums;
 
 public enum CapacityType {
     VERYSMALL(null, 10),
@@ -20,6 +20,15 @@ public enum CapacityType {
 
     public Integer getTopValue() {
         return topValue;
+    }
+    public static CapacityType getValue(int value){
+        for(CapacityType e : CapacityType.values()){
+            if(value >= e.getBottomValue() && value <= e.getTopValue()){
+                System.out.println(e);
+                return e;
+            }
+        }
+        return null;
     }
 
     @Override

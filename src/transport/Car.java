@@ -1,5 +1,9 @@
 package transport;
+
 import Driver.DriverCategoryB;
+import Enums.BodyType;
+import Enums.CarType;
+import Mechanic.Mechanic;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -196,6 +200,13 @@ public class Car extends Transport<DriverCategoryB> {
             System.out.println(carType);
         }
     }
+
+    @Override
+    public void passDiagnostic() {
+        System.out.println("Легковой автомобиль прошел диагностику!");
+    }
+
+
 
     @Override
     public String toString() {

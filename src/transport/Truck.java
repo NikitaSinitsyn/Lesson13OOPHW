@@ -1,6 +1,8 @@
 package transport;
 
 import Driver.DriverCategoryD;
+import Enums.LoadCapacity;
+import Enums.TruckType;
 
 import java.util.Objects;
 
@@ -71,6 +73,7 @@ public class Truck extends Transport<DriverCategoryD>{
         this.truckType = truckType;
     }
 
+
     @Override
     void startMoving() {
         System.out.println("Truck is moving!");
@@ -101,6 +104,11 @@ public class Truck extends Transport<DriverCategoryD>{
         } else {
             System.out.println(truckType);
         }
+    }
+
+    @Override
+    public void passDiagnostic() {
+        System.out.println("Грузовой атомобиль прошел диагностику");
     }
 
     @Override
