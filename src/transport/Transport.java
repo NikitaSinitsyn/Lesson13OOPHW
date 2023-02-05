@@ -70,6 +70,9 @@ public abstract class Transport<T extends Driver> implements Competing {
         this.driver = driver;
     }
 
+    public ArrayList<Mechanic> getMechanicsList() {
+        return mechanicsList;
+    }
 
     // validate area
     public static String validateParameter(String parameter) {
@@ -132,12 +135,12 @@ public abstract class Transport<T extends Driver> implements Competing {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Transport transport = (Transport) o;
-        return year == transport.year && Float.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(country, transport.country) && Objects.equals(colour, transport.colour);
+        Transport<?> transport = (Transport<?>) o;
+        return year == transport.year && Float.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(country, transport.country) && Objects.equals(colour, transport.colour) && Objects.equals(driver, transport.driver) && Objects.equals(mechanicsList, transport.mechanicsList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, year, country, colour, engineVolume);
+        return Objects.hash(brand, model, year, country, colour, engineVolume, driver, mechanicsList);
     }
 }
