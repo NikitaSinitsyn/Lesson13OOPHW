@@ -61,4 +61,9 @@ public abstract class Driver {
     public String getFullName(){
        return this.getFirstName() + " " + this.getMiddleName() + " " + this.getLastName();
     }
+
+    @Override
+    public String toString() {
+        return "Driver " + firstName + " " + middleName + " " + lastName + " " + getLicense + " " + yearsOfExperience;
+    }
 }

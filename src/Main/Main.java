@@ -13,20 +13,17 @@ import transport.Car;
 import transport.Transport;
 import transport.Truck;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        DriverCategoryB driverB1 = new DriverCategoryB("Иван", "Иванов", "Иванов", true, 15);
+        DriverCategoryB driverB1 = new DriverCategoryB("Иван", "Петров", "Иванов", true, 15);
         DriverCategoryB driverB2 = new DriverCategoryB("Иван", "Иванов", "Иванов", true, 15);
         DriverCategoryB driverB3 = new DriverCategoryB("Иван", "Иванов", "Иванов", true, 15);
         DriverCategoryB driverB4 = new DriverCategoryB("Иван", "Иванов", "Иванов", true, 15);
         DriverCategoryB driverB5 = new DriverCategoryB("Иван", "Иванов", "Иванов", true, 15);
 
-        DriverCategoryC driverC1 = new DriverCategoryC("Иван", "Иванов", "Иванов", true, 15);
+        DriverCategoryC driverC1 = new DriverCategoryC("Иван", "Сидоров", "Иванов", true, 15);
         DriverCategoryC driverC2 = new DriverCategoryC("Иван", "Иванов", "Иванов", true, 15);
         DriverCategoryC driverC3 = new DriverCategoryC("Иван", "Иванов", "Иванов", true, 15);
         DriverCategoryC driverC4 = new DriverCategoryC("Иван", "Иванов", "Иванов", true, 15);
@@ -128,6 +125,17 @@ public class Main {
 
         for (Map.Entry<Transport, List<Mechanic>> map: transportAndMechanicMap.entrySet()) {
             System.out.println("Transport - " + map.getKey() + ", Mechanics - " + map.getValue());
+        }
+
+        Set<Driver> driverSet = new LinkedHashSet();
+        driverSet.add(driverB1);
+        driverSet.add(driverC1);
+        driverSet.add(driverD1);
+
+        Iterator<Driver> iterator = driverSet.iterator();
+        while (iterator.hasNext()){
+            Driver driver = iterator.next();
+            System.out.println(driver);
         }
 
 
