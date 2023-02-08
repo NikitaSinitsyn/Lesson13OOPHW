@@ -14,7 +14,9 @@ import transport.Transport;
 import transport.Truck;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -54,6 +56,10 @@ public class Main {
         Mechanic mechanic2 = new Mechanic("Svqtoslav", "Korshin", "Red Bull");
         mechanicsList.add(mechanic1);
         mechanicsList.add(mechanic2);
+        Mechanic mechanic3 = new Mechanic("Ivan", "Katynin", "Honda");
+        Mechanic mechanic4 = new Mechanic("Ilia", "Katynin", "Honda");
+        mechanicsList.add(mechanic3);
+        mechanicsList.add(mechanic4);
 
 
         Car car1 = new Car("Lada", "Granta", 2015, "Россия", "желтый", 1.7f, driverB1, "механика", BodyType.COUPE, "C227HA48", 5, true, new Car.Key(true, true), 45, 245, 240, CarType.FOURSTROKESUPERCHARGED);
@@ -94,6 +100,9 @@ public class Main {
         car1.printAllMechanics();
         firstBus.addMechanic(mechanic1);
 
+        car2.addMechanic(mechanic3);
+        car2.addMechanic(mechanic4);
+
         printAllTransportsInformation(transportList);
 
 
@@ -109,6 +118,17 @@ public class Main {
         serviceStation.printAllTransports();
         serviceStation.doService();
         serviceStation.printAllTransports();
+
+        System.out.println("-----------------------------------");
+
+        Map<Transport, List<Mechanic>> transportAndMechanicMap = new HashMap<>();
+        transportAndMechanicMap.put(car1, car1.getMechanicsList());
+        transportAndMechanicMap.put(car2, car2.getMechanicsList());
+
+
+        for (Map.Entry<Transport, List<Mechanic>> map: transportAndMechanicMap.entrySet()) {
+            System.out.println("Transport - " + map.getKey() + ", Mechanics - " + map.getValue());
+        }
 
 
     }
